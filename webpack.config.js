@@ -3,18 +3,25 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const BUNDLE_FOLDER_NAME = 'docs';
+const
+    BUNDLE_FOLDER_NAME = 'docs',
+    GIT_REPOSITORY = 'openmedia-parking';
+
+const
+    mode = process.env.DEV || 'development',
+    isDev = mode === 'development',
+    isProd = !isDev;
 
 module.exports = {
-    mode: 'development',
-    devtool: 'eval-source-map',
+    mode: mode,
+    devtool: isDev && 'eval-source-map',
     entry: {
         main: path.resolve(__dirname, 'src', 'index.js'),
     },
     output: {
         path: path.resolve(__dirname, BUNDLE_FOLDER_NAME),
         filename: '[name].bundle.js',
-        publicPath: '/',
+        publicPath: isProd ? `/${GIT_REPOSITORY}/` : '/',
         clean: true,
     },
     resolve: {

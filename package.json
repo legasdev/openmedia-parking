@@ -10,6 +10,7 @@
   "author": "Artem Stepanov <artyom.stepanov@openmedia.co>",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "rollup": "^2.3.4",
@@ -20,6 +21,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "sirv-cli": "^2.0.0"
+    "sirv-cli": "^2.0.0",
+    "svelte-navigator": "^3.1.6"
   }
 }

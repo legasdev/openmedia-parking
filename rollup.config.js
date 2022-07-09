@@ -1,9 +1,11 @@
+import path from 'path';
 import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import alias from '@rollup/plugin-alias';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -70,7 +72,16 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+
+		alias({
+			entries: [
+				{ find: '@src', replacement: path.resolve(__dirname, 'src') },
+				{ find: '@ui', replacement: path.resolve(__dirname, 'src', 'ui') },
+				{ find: '@routes', replacement: path.resolve(__dirname, 'src', 'routes') },
+				{ find: '@components', replacement: path.resolve(__dirname, 'src', 'components') },
+			]
+		})
 	],
 	watch: {
 		clearScreen: false

@@ -1,5 +1,5 @@
 const SETTINGS = {
-    baseURL: '',
+    baseURL: '/openmedia-parking',
 };
 
 export { SETTINGS };

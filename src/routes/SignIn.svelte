@@ -3,29 +3,28 @@
     import { Form, FormDivider } from "@ui/Form";
     import { Input, InputPassword } from "@ui/Input";
     import { Button } from "@ui/Button";
-    import { SETTINGS } from "../settings";
-    import {FIREBASE_ENDPOINTS} from "../firebaseEndpoints";
+    import { authAPI } from "api";
+
+    let waitingSignInFetch = false;
 
     async function handleSignInSubmit(event) {
-        const data = event.detail;
-        console.log(event);
-        console.log(data);
-        const endpointUrl = `${SETTINGS.firebaseAPI}${FIREBASE_ENDPOINTS.signIn}?key=${SETTINGS.firebaseKey}`;
-        const result = await fetch(endpointUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                ...data.reduce((info, field) => ({
-                    ...info,
-                    [field.name]: field.value,
-                }), {}),
-                returnSecureToken: true,
-            }),
-        });
-        console.log('result', result);
-        console.log('result json', await result.json());
+        waitingSignInFetch = true;
+        try {
+            const data = event.detail;
+            const response = await authAPI.signIn(data);
+            const resultSignInData = await response.json();
+            const resultWithError = !response.ok || resultSignInData.error;
+
+            if ( resultWithError ) {
+                throw new Error('SignIn Error.');
+            }
+
+            console.log('result', response);
+            console.log('result json', resultSignInData);
+        } catch (error) {
+            console.error(error);
+        }
+        waitingSignInFetch = false;
     }
 </script>
 
@@ -34,9 +33,9 @@
 </svelte:head>
 <Card>
     <Form on:submit={handleSignInSubmit}>
-        <Input type="email" name="email" placeholder="Email" />
+        <Input type="email" name="email" placeholder="Email" disabled={waitingSignInFetch} />
         <FormDivider />
-        <InputPassword name="password" placeholder="Пароль" />
-        <Button slot="footer" value="Войти" />
+        <InputPassword name="password" placeholder="Пароль" disabled={waitingSignInFetch} />
+        <Button slot="footer" value="Войти" disabled={waitingSignInFetch} />
     </Form>
 </Card>

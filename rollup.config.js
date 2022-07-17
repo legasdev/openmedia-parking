@@ -76,6 +76,7 @@ export default {
 
 		alias({
 			entries: [
+				{ find: 'api', replacement: path.resolve(__dirname, 'src', 'api') },
 				{ find: '@src', replacement: path.resolve(__dirname, 'src') },
 				{ find: '@ui', replacement: path.resolve(__dirname, 'src', 'ui') },
 				{ find: '@routes', replacement: path.resolve(__dirname, 'src', 'routes') },

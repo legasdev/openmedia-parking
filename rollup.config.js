@@ -76,10 +76,12 @@ export default {
 
 		alias({
 			entries: [
-				{ find: 'api', replacement: path.resolve(__dirname, 'src', 'api') },
+				{ find: '@api', replacement: path.resolve(__dirname, 'src', 'api') },
 				{ find: '@src', replacement: path.resolve(__dirname, 'src') },
 				{ find: '@ui', replacement: path.resolve(__dirname, 'src', 'ui') },
+				{ find: '@utils', replacement: path.resolve(__dirname, 'src', 'utils') },
 				{ find: '@routes', replacement: path.resolve(__dirname, 'src', 'routes') },
+				{ find: '@stores', replacement: path.resolve(__dirname, 'src', 'stores') },
 				{ find: '@components', replacement: path.resolve(__dirname, 'src', 'components') },
 			]
 		})

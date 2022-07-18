@@ -30,7 +30,7 @@
 
     .wrapper {
         width: 100%;
-        background: var(--color-white-100);
+        background: var(--color-white-10);
         border-radius: 6px;
     }
 

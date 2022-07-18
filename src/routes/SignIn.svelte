@@ -1,14 +1,22 @@
 <script>
+    import { navigate } from "svelte-navigator";
+
     import { Card } from "@components/Card";
     import { Form, FormDivider } from "@ui/Form";
     import { Input, InputPassword } from "@ui/Input";
     import { Button } from "@ui/Button";
-    import { authAPI } from "api";
+    import { authAPI } from "@api";
+    import { userToken } from "@stores/user";
+    import { checkAuth } from "@utils";
 
     let waitingSignInFetch = false;
+    let signInError;
+
+    checkAuth($userToken);
 
     async function handleSignInSubmit(event) {
         waitingSignInFetch = true;
+        signInError = undefined;
         try {
             const data = event.detail;
             const response = await authAPI.signIn(data);
@@ -16,13 +24,13 @@
             const resultWithError = !response.ok || resultSignInData.error;
 
             if ( resultWithError ) {
-                throw new Error('SignIn Error.');
+                throw new Error('Incorrect login or password.');
             }
 
-            console.log('result', response);
-            console.log('result json', resultSignInData);
+            $userToken = resultSignInData.idToken || undefined;
+            navigate('/');
         } catch (error) {
-            console.error(error);
+            signInError = error.message;
         }
         waitingSignInFetch = false;
     }
@@ -38,4 +46,15 @@
         <InputPassword name="password" placeholder="Пароль" disabled={waitingSignInFetch} />
         <Button slot="footer" value="Войти" disabled={waitingSignInFetch} />
     </Form>
+    {#if signInError}
+        <span class="error-message">{signInError}</span>
+    {/if}
 </Card>
+
+<style>
+    .error-message {
+        display: inline-block;
+        margin-top: 1.25rem;
+        color: var(--color-red-70);
+    }
+</style>

@@ -1,14 +1,12 @@
 <script>
-    import {navigate} from "svelte-navigator";
+    import { userToken } from "@stores/user";
+    import { checkAuth } from "@utils";
 
-    let isAuth = false;
-
-    if ( !isAuth ) {
-        navigate("signin");
-    }
+    checkAuth($userToken);
 </script>
 
 <svelte:head>
     <title>Parking / OpenMedia Parking</title>
 </svelte:head>
+
 MainPage

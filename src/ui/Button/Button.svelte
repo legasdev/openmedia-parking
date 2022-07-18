@@ -1,19 +1,28 @@
 <script>
     export let value = null;
     export let disabled = false;
+
+    const hasIcon = $$slots.default || false;
 </script>
 
 <button class="button" {disabled}>
-    {#if value}
-        <span class="text">{value}</span>
-    {/if}
+    <span class="wrapper">
+        {#if hasIcon}
+            <span class="icon">
+                <slot></slot>
+            </span>
+        {/if}
+        {#if value}
+            <span class="text">{value}</span>
+        {/if}
+    </span>
 </button>
 
 <style>
     .button {
         width: 100%;
         padding: 0.75rem;
-        background: var(--color-dark-100);
+        background: var(--color-dark-10);
         border: 1px solid transparent;
         border-radius: 0.375rem;
         cursor: pointer;
@@ -21,19 +30,32 @@
     }
 
     .button:hover {
-        background: var(--color-dark-200);
+        background: var(--color-dark-20);
     }
 
     .button:active {
-        background: var(--color-dark-300);
+        background: var(--color-dark-30);
     }
 
     .button:disabled {
-        background: var(--color-white-300);
+        background: var(--color-white-30);
     }
 
     .button:focus {
         outline: var(--outline);
+    }
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon {
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.25rem;
     }
 
     .text {

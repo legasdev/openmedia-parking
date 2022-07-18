@@ -26,16 +26,16 @@
         font-weight: 400;
         font-size: 18px;
         line-height: 24px;
-        color: var(--color-dark-100);
+        color: var(--color-dark-10);
     }
 
     .input::placeholder {
-        color: var(--color-white-400);
+        color: var(--color-white-40);
     }
 
     .input:disabled,
     .input:disabled::placeholder {
-        color: var(--color-white-300);
+        color: var(--color-white-30);
     }
 
     .input:focus {

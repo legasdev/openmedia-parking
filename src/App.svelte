@@ -31,20 +31,28 @@
 <style>
 	:global(:root) {
 		--color-white: #FFFFFF;
-		--color-white-100: #F7F7F7;
-		--color-white-200: #E8E8E8;
-		--color-white-300: #C6C6C6;
-		--color-white-400: #8D8D8D;
-		--color-dark-100: #000000;
-		--color-dark-200: #272727;
-		--color-dark-300: #393939;
-		--color-purple-100: #7A75FF;
+		--color-white-10: #F7F7F7;
+		--color-white-20: #E8E8E8;
+		--color-white-30: #C6C6C6;
+		--color-white-40: #8D8D8D;
+		--color-dark-10: #000000;
+		--color-dark-20: #272727;
+		--color-dark-30: #393939;
+		--color-dark-40: #E0E0E0;
+		--color-purple-60: #3A35D1;
+		--color-purple-50: #4F49F3;
+		--color-purple-40: #7A75FF;
+		--color-red-70: #C20000;
+		--color-red-60: #EB0000;
+		--color-red-50: #FF2E2E;
+		--color-green: #37CC71;
+		--color-yellow: #FFA514;
 
-		--outline: 2px solid var(--color-purple-100);
+		--outline: 2px solid var(--color-purple-40);
 	}
 
 	:global(body) {
-		background: var(--color-white-100);
+		background: var(--color-white-10);
 	}
 
 	.main {

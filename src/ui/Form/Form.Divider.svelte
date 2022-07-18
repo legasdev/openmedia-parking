@@ -6,6 +6,6 @@
         height: 1px;
         margin: 0 auto;
         border: none;
-        background: var(--color-white-200);
+        background: var(--color-white-20);
     }
 </style>

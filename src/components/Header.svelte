@@ -4,8 +4,7 @@
     import { userToken } from "@stores/user";
     import { SETTINGS } from "@src/settings";
 
-    import { Item } from "@ui/Item";
-    import { Avatar } from "@ui/Avatar";
+    import { UserMiniProfile } from "@components/UserMiniProfile";
 </script>
 
 <header>
@@ -25,12 +24,7 @@
     </Link>
     {#if $userToken}
         <div class="profile">
-            <Item transparent>
-                <svelte:fragment slot="left">
-                    <Avatar name={'Sergey'} />
-                    <span class="profile_username">Sergey</span>
-                </svelte:fragment>
-            </Item>
+            <UserMiniProfile />
         </div>
     {/if}
 </header>
@@ -48,14 +42,5 @@
         width: 100%;
         max-width: 17.375rem;
         margin-top: 2rem;
-    }
-
-    .profile_username {
-        margin-left: 0.5rem;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1.125rem;
-        line-height: 1.5rem;
-        color: var(--color-dark-10);
     }
 </style>

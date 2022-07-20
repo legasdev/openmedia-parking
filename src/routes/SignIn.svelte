@@ -4,7 +4,7 @@
     import { Card } from "@components/Card";
     import { Form, FormDivider } from "@ui/Form";
     import { Input, InputPassword } from "@ui/Input";
-    import { Button } from "@ui/Button";
+    import { IconButton } from "@ui/Button";
     import { authAPI } from "@api";
     import { userToken } from "@stores/user";
     import { checkAuth } from "@utils";
@@ -44,7 +44,7 @@
         <Input type="email" name="email" placeholder="Email" disabled={waitingSignInFetch} />
         <FormDivider />
         <InputPassword name="password" placeholder="Пароль" disabled={waitingSignInFetch} />
-        <Button slot="footer" value="Войти" disabled={waitingSignInFetch} />
+        <IconButton slot="footer" value="Войти" disabled={waitingSignInFetch} />
     </Form>
     {#if signInError}
         <span class="error-message">{signInError}</span>

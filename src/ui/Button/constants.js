@@ -7,6 +7,12 @@ const STYLES = {
     ghost: 'ghost',
 };
 
+const SIZES = {
+    mini: 'mini',
+    middle: 'middle',
+}
+
 export {
     STYLES,
+    SIZES,
 };

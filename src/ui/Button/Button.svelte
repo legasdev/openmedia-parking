@@ -1,14 +1,21 @@
 <script>
-    import {STYLES} from "./constants";
+    import { SIZES, STYLES } from "./constants";
 
     export let disabled = false;
     export let theme = STYLES.secondary;
+    export let size = SIZES.middle;
 </script>
 
 <button
     class="button"
     class:secondary={theme === STYLES.secondary}
+    class:tertiary={theme === STYLES.tertiary}
+    class:flat={theme === STYLES.flat}
+    class:ghost-link={theme === STYLES.ghostLink}
+    class:ghost={theme === STYLES.ghost}
+    class:mini={size === SIZES.mini}
     {disabled}
+    on:click
 >
     <span class="wrapper">
         <slot />
@@ -30,6 +37,12 @@
         outline: var(--outline);
     }
 
+    /* sizes: mini */
+
+    .mini {
+        padding: 0;
+    }
+
     /* themes: primary */
 
     .button:hover {
@@ -46,7 +59,7 @@
 
     /* themes: secondary */
 
-    .secondary {
+    .button.secondary {
         background: var(--color-dark-10);
     }
 
@@ -60,6 +73,30 @@
 
     .button.secondary:disabled {
         background: var(--color-white-30);
+    }
+
+    /* themes: tertiary */
+
+    /* themes: flat */
+
+    /* themes: ghost-link */
+
+    /* themes: ghost */
+
+    .button.ghost {
+        background: transparent;
+    }
+
+    .button.ghost:hover {
+        background: transparent;
+    }
+
+    .button.ghost:active {
+        background: transparent;
+    }
+
+    .button.ghost:disabled {
+        background: transparent;
     }
 
     .wrapper {

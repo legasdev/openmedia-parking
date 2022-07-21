@@ -1,17 +1,18 @@
 <script>
-	import {beforeUpdate} from "svelte";
+	import { beforeUpdate } from "svelte";
 	import { navigate, Router, Route } from "svelte-navigator";
-	import {SETTINGS} from "@src/settings";
+	import { SETTINGS, ROUTES } from "@settings";
 
 	import SignIn from "@routes/SignIn.svelte";
 	import Main from "@routes/Main.svelte";
+
 	import Header from "@components/Header.svelte";
 
 	let isAuth = false;
 
-	beforeUpdate(() => {
+	beforeUpdate(async () => {
 		if ( !isAuth ) {
-			navigate("signin");
+			navigate(ROUTES.signIn);
 		}
 	});
 </script>
@@ -19,10 +20,10 @@
 <Router primary={false} basepath={SETTINGS.baseURL}>
 	<main class="main">
 		<Header />
-		<Route path="/">
+		<Route path={ROUTES.home}>
 			<Main />
 		</Route>
-		<Route path="/signin">
+		<Route path={ROUTES.signIn}>
 			<SignIn />
 		</Route>
 	</main>

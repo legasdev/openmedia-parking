@@ -4,4 +4,4 @@ const SETTINGS = {
     firebaseKey: 'AIzaSyCWz0FIugCN0THXx1FYvhtR0qnLkONKELI',
 };
 
-export { SETTINGS };
+export default SETTINGS;

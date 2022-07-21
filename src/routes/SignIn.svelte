@@ -1,13 +1,15 @@
 <script>
     import { navigate } from "svelte-navigator";
 
-    import { Card } from "@components/Card";
+    import { authAPI } from "@api";
+    import { ROUTES } from "@settings";
+    import { userToken } from "@stores/user";
+    import { checkAuth } from "@utils";
+
     import { Form, FormDivider } from "@ui/Form";
     import { Input, InputPassword } from "@ui/Input";
     import { IconButton } from "@ui/Button";
-    import { authAPI } from "@api";
-    import { userToken } from "@stores/user";
-    import { checkAuth } from "@utils";
+    import { Card } from "@components/Card";
 
     let waitingSignInFetch = false;
     let signInError;
@@ -28,7 +30,7 @@
             }
 
             $userToken = resultSignInData.idToken || undefined;
-            navigate('/');
+            navigate(ROUTES.home);
         } catch (error) {
             signInError = error.message;
         }

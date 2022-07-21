@@ -1,12 +1,13 @@
 import { navigate } from "svelte-navigator";
+import { ROUTES } from "@settings";
 
-function checkAuth(token) {
+function checkAuth(token=undefined) {
     if ( !token ) {
-        navigate('signin');
+        navigate(ROUTES.singIn);
         return;
     }
 
-    navigate('/');
+    navigate(ROUTES.home);
 }
 
 export default checkAuth;

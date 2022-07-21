@@ -8,8 +8,13 @@ function createUserToken() {
 
     function tokenSet(token) {
         localStorage.removeItem(LS_TOKEN_NAME);
-        localStorage.setItem(LS_TOKEN_NAME, token);
         set(token);
+
+        if ( !token ) {
+            return;
+        }
+
+        localStorage.setItem(LS_TOKEN_NAME, token);
     }
 
     return {

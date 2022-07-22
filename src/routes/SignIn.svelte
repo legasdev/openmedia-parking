@@ -20,16 +20,10 @@
         waitingSignInFetch = true;
         signInError = undefined;
         try {
-            const data = event.detail;
-            const response = await authAPI.signIn(data);
-            const resultSignInData = await response.json();
-            const resultWithError = !response.ok || resultSignInData.error;
+            const signInFormData = event.detail;
+            const signInResponseData = await authAPI.signIn(signInFormData);
 
-            if ( resultWithError ) {
-                throw new Error('Incorrect login or password.');
-            }
-
-            $userToken = resultSignInData.idToken || undefined;
+            $userToken = signInResponseData.idToken || undefined;
             navigate(ROUTES.home);
         } catch (error) {
             signInError = error.message;

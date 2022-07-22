@@ -1,29 +1,9 @@
-import { SETTINGS, FIREBASE_ENDPOINTS } from "@settings";
-
-/**
- * Send request to firebase
- *
- * @param {string} endpoint
- * @param {array<{name:string, value:string}>} [data=[]]
- * @param {string} [method='POST']
- * @param {object} [headers={}]
- * @returns {Promise<Response>}
- */
-async function sendRequest(endpoint, data=[], method='POST', headers={}) {
-    return fetch(endpoint, {
-        method,
-        headers: {
-            'Content-Type': 'application/json',
-            ...headers
-        },
-        body: JSON.stringify({
-            ...data.reduce((info, field) => ({
-                ...info,
-                [field.name]: field.value,
-            }), {}),
-        }),
-    });
-}
+import {
+    SETTINGS,
+    FIREBASE_ENDPOINTS,
+    FIREBASE_DB
+} from "@settings";
+import {METHODS, sendRequest} from "./utils";
 
 const authAPI = {
 
@@ -44,7 +24,12 @@ const authAPI = {
                 value: true,
             }
         ];
-        return sendRequest(endpointUrl, requestData);
+
+        return sendRequest({
+            endpoint: endpointUrl,
+            data: requestData,
+            method: METHODS.post,
+        });
     },
 
     /**
@@ -53,13 +38,11 @@ const authAPI = {
      * @param {string} token
      * @returns {Promise<Response>}
      */
-    getUserData: function getUserData(token) {
-        const endpointUrl = `${SETTINGS.firebaseAPI}${FIREBASE_ENDPOINTS.getUserData}?key=${SETTINGS.firebaseKey}`;
-        const data = [{
-            name: 'idToken',
-            value: token,
-        }];
-        return sendRequest(endpointUrl, data);
+    getProfile: async function getProfile(token) {
+        const endpointUrl = `${SETTINGS.firebaseDB}${FIREBASE_DB.users}.json?auth=${token}`;
+        return sendRequest({
+            endpoint: endpointUrl,
+        });
     },
 };
 

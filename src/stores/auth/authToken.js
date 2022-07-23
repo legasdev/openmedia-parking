@@ -1,6 +1,5 @@
 import { derived } from "svelte/store";
-import { authInformation } from "@stores/auth";
-import { userAPI } from "@api";
+import authInformation from "./authInformation";
 
 /**
  *
@@ -11,18 +10,15 @@ import { userAPI } from "@api";
  * @param {string} $authInfo.expiresIn The number of seconds in which the ID token expires.
  * @param {string} $authInfo.localId The uid of the authenticated auth.
  * @param {boolean} $authInfo.registered Whether the email is for an existing account.
- * @param {function} set
  */
-async function makeUserInformation($authInfo, set) {
-    if (!$authInfo) {
+function returnAuthToken($authInfo) {
+    if ( !$authInfo ) {
         return;
     }
 
-    const usersList = await userAPI.getProfileData($authInfo.idToken);
-    const userId = $authInfo.localId;
-    set(usersList[userId]);
+    return $authInfo.idToken;
 }
 
-const userInformation = derived(authInformation, makeUserInformation,undefined);
+const authToken = derived(authInformation, returnAuthToken, undefined);
 
-export default userInformation;
+export default authToken;

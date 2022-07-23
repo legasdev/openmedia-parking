@@ -3,7 +3,7 @@
 
     import { authAPI } from "@api";
     import { ROUTES } from "@settings";
-    import { userToken } from "@stores/user";
+    import { authInformation, authToken } from "@stores/auth";
     import { checkAuth } from "@utils";
 
     import { Form, FormDivider } from "@ui/Form";
@@ -14,7 +14,7 @@
     let waitingSignInFetch = false;
     let signInError;
 
-    checkAuth($userToken);
+    checkAuth($authToken);
 
     async function handleSignInSubmit(event) {
         waitingSignInFetch = true;
@@ -23,7 +23,7 @@
             const signInFormData = event.detail;
             const signInResponseData = await authAPI.signIn(signInFormData);
 
-            $userToken = signInResponseData.idToken || undefined;
+            $authInformation = signInResponseData || undefined;
             navigate(ROUTES.home);
         } catch (error) {
             signInError = error.message;

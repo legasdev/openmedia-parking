@@ -1,20 +1,10 @@
 <script>
-  import { onMount } from 'svelte';
-  import { userToken, userInformation } from "@stores/user";
+  import { authToken } from "@stores/auth";
   import { checkAuth } from "@utils";
-  import { authAPI } from "@api";
 
   import { Card } from "@components/Card";
 
-  checkAuth($userToken);
-
-  onMount(async () => {
-    if (!$userToken) {
-      return;
-    }
-
-    $userInformation = await authAPI.getProfile($userToken) || undefined;
-  });
+  checkAuth($authToken);
 </script>
 
 <svelte:head>

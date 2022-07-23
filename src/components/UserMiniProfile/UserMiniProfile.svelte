@@ -1,5 +1,6 @@
 <script>
-    import { userToken } from "@stores/user";
+    import { authInformation } from "@stores/auth";
+    import { userInformation } from "@stores/user";
     import { checkAuth } from "@utils";
     import { Avatar } from "@ui/Avatar";
     import { Item } from "@ui/Item";
@@ -10,16 +11,18 @@
     } from "@ui/Button";
 
     function handleLogoutClick() {
-        $userToken = undefined;
+        $authInformation = undefined;
         checkAuth();
     }
+
+    $: userName = $userInformation ? $userInformation.name : " ";
 </script>
 
 <Item transparent>
     <svelte:fragment slot="left">
         <div class="section">
-            <Avatar name={'Sergey'} />
-            <span class="username">Sergey</span>
+            <Avatar name={userName} />
+            <span class="username">{userName}</span>
         </div>
     </svelte:fragment>
     <svelte:fragment slot="right">

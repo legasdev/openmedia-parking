@@ -2,16 +2,16 @@
 	import { beforeUpdate } from "svelte";
 	import { navigate, Router, Route } from "svelte-navigator";
 	import { SETTINGS, ROUTES } from "@settings";
+	import { authToken, authInformation } from "@stores/auth";
 
 	import SignIn from "@routes/SignIn.svelte";
 	import Main from "@routes/Main.svelte";
 
 	import Header from "@components/Header.svelte";
-
-	let isAuth = false;
+	import { authAPI } from "./api";
 
 	beforeUpdate(async () => {
-		if ( !isAuth ) {
+		if ( !$authToken ) {
 			navigate(ROUTES.signIn);
 		}
 	});

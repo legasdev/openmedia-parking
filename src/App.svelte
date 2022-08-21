@@ -1,14 +1,18 @@
 <script>
-	import { beforeUpdate } from "svelte";
+	import { beforeUpdate, onMount } from "svelte";
 	import { navigate, Router, Route } from "svelte-navigator";
 	import { SETTINGS, ROUTES } from "@settings";
-	import { authToken, authInformation } from "@stores/auth";
+	import { authToken } from "@stores/auth";
+	import { fbAuth } from "@stores/firebase";
 
 	import SignIn from "@routes/SignIn.svelte";
 	import Main from "@routes/Main.svelte";
 
 	import Header from "@components/Header.svelte";
-	import { authAPI } from "./api";
+
+	onMount(() => {
+		console.log($fbAuth);
+	});
 
 	beforeUpdate(async () => {
 		if ( !$authToken ) {

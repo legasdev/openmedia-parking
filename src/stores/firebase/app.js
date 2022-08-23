@@ -4,8 +4,8 @@ import { initializeApp } from "firebase/app";
 function createApp() {
   const firebaseConfig = {
     apiKey: "AIzaSyCWz0FIugCN0THXx1FYvhtR0qnLkONKELI",
-    // authDomain: "openmedia-parking.firebaseapp.com",
-    authDomain: "localhost",
+    authDomain: "openmedia-parking.firebaseapp.com",
+    // authDomain: "localhost",
     databaseURL: "https://openmedia-parking-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "openmedia-parking",
     storageBucket: "openmedia-parking.appspot.com",

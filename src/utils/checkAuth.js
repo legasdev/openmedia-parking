@@ -1,8 +1,8 @@
 import { navigate } from "svelte-navigator";
 import { ROUTES } from "@settings";
 
-function checkAuth(token=undefined) {
-    if ( !token ) {
+function checkAuth(userIsLoggedIn=false) {
+    if ( !userIsLoggedIn ) {
         navigate(ROUTES.singIn);
         return;
     }

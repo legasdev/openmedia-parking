@@ -1,6 +1,5 @@
 <script>
-    import { authInformation } from "@stores/auth";
-    import { userInformation } from "@stores/user";
+    import { userInformation } from "@stores/auth";
     import { checkAuth } from "@utils";
     import { Avatar } from "@ui/Avatar";
     import { Item } from "@ui/Item";
@@ -11,11 +10,10 @@
     } from "@ui/Button";
 
     function handleLogoutClick() {
-        $authInformation = undefined;
         checkAuth();
     }
 
-    $: userName = $userInformation ? $userInformation.name : " ";
+    $: userName = "No name";
 </script>
 
 <Item transparent>

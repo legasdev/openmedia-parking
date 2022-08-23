@@ -1,9 +1,11 @@
 <script>
+    import { beforeUpdate } from "svelte";
     import { navigate } from "svelte-navigator";
+    import { signInWithEmailAndPassword } from "firebase/auth";
 
-    import { authAPI } from "@api";
     import { ROUTES } from "@settings";
-    import { authInformation, authToken } from "@stores/auth";
+    import { userIsLoggedIn } from "@stores/auth";
+    import { fbAuth } from "@stores/firebase";
     import { checkAuth } from "@utils";
 
     import { Form, FormDivider } from "@ui/Form";
@@ -14,22 +16,24 @@
     let waitingSignInFetch = false;
     let signInError;
 
-    checkAuth($authToken);
 
     async function handleSignInSubmit(event) {
         waitingSignInFetch = true;
         signInError = undefined;
         try {
             const signInFormData = event.detail;
-            const signInResponseData = await authAPI.signIn(signInFormData);
-
-            $authInformation = signInResponseData || undefined;
+            const [email, password] = signInFormData;
+            await signInWithEmailAndPassword($fbAuth, email.value, password.value);
             navigate(ROUTES.home);
         } catch (error) {
             signInError = error.message;
         }
         waitingSignInFetch = false;
     }
+
+    beforeUpdate(() => {
+      checkAuth($userIsLoggedIn);
+    });
 </script>
 
 <svelte:head>

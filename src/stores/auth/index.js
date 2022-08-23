@@ -1,7 +1,7 @@
-import authInformation from "./authInformation";
-import authToken from "./authToken";
+import userInformation from "./userInformation";
+import userIsLoggedIn from "./userIsLoggedIn";
 
 export {
-    authInformation,
-    authToken,
+    userInformation,
+    userIsLoggedIn,
 };

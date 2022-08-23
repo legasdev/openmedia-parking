@@ -1,10 +1,13 @@
 <script>
-  import { authToken } from "@stores/auth";
+  import { beforeUpdate } from "svelte";
+  import { userIsLoggedIn } from "@stores/auth";
   import { checkAuth } from "@utils";
 
   import { Card } from "@components/Card";
 
-  checkAuth($authToken);
+  beforeUpdate(() => {
+    checkAuth($userIsLoggedIn);
+  });
 </script>
 
 <svelte:head>

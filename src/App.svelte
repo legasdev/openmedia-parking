@@ -1,8 +1,9 @@
 <script>
-	import { beforeUpdate, onMount } from "svelte";
-	import { navigate, Router, Route } from "svelte-navigator";
+	import { onMount } from "svelte";
+	import { Router, Route } from "svelte-navigator";
+	import { onAuthStateChanged } from "firebase/auth";
 	import { SETTINGS, ROUTES } from "@settings";
-	import { authToken } from "@stores/auth";
+	import { userIsLoggedIn, userInformation } from "@stores/auth";
 	import { fbAuth } from "@stores/firebase";
 
 	import SignIn from "@routes/SignIn.svelte";
@@ -11,14 +12,28 @@
 	import Header from "@components/Header.svelte";
 
 	onMount(() => {
-		console.log($fbAuth);
+		onAuthStateChanged($fbAuth, (user) => {
+			if (user) {
+				// User is signed in, see docs for a list of available properties
+				// https://firebase.google.com/docs/reference/js/firebase.User
+				const uid = user.uid;
+
+				console.log('user', user);
+				console.log('uid', uid);
+				$userInformation = user;
+				// ...
+			} else {
+				// User is signed out
+				// ...
+				console.log('user off');
+				$userInformation = undefined;
+			}
+		});
 	});
 
-	beforeUpdate(async () => {
-		if ( !$authToken ) {
-			navigate(ROUTES.signIn);
-		}
-	});
+	$: {
+		console.log('userIsLoggedIn', $userIsLoggedIn);
+	}
 </script>
 
 <Router primary={false} basepath={SETTINGS.baseURL}>

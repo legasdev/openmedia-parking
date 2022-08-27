@@ -1,6 +1,7 @@
 <script>
+    import { signOut } from "firebase/auth";
     import { userInformation } from "@stores/auth";
-    import { checkAuth } from "@utils";
+    import { fbAuth } from "@stores/firebase";
     import { Avatar } from "@ui/Avatar";
     import { Item } from "@ui/Item";
     import {
@@ -9,11 +10,15 @@
         BUTTON_STYLES
     } from "@ui/Button";
 
-    function handleLogoutClick() {
-        checkAuth();
+    async function handleLogoutClick() {
+        try {
+            await signOut($fbAuth);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    $: userName = "No name";
+    $: userName = $userInformation?.displayName || "";
 </script>
 
 <Item transparent>

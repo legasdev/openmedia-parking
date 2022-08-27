@@ -11,19 +11,19 @@
 </script>
 
 <svelte:head>
-    <title>Parking / OpenMedia Parking</title>
+  <title>Parking / OpenMedia Parking</title>
 </svelte:head>
 
 <Card>
-    Фильтры
+  Фильтры
 </Card>
 <div style="width: 100%; margin-top: 1rem;">
-    <Card>
-        Место №1
-    </Card>
+  <Card>
+    Место №1
+  </Card>
 </div>
 <div style="width: 100%; margin-top: 1rem;">
-    <Card>
-        Место №2
-    </Card>
+  <Card>
+    Место №2
+  </Card>
 </div>

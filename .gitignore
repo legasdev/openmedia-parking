@@ -1,5 +1,7 @@
 .*
 !.gitignore
+!.prettierignore
+!.prettierrc
 node_modules/
 public/
 

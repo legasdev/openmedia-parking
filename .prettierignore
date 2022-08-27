@@ -1,0 +1,14 @@
+*.html
+*.py
+*.yml
+*.md
+*.txt
+
+bundles
+docs
+public
+node_modules
+
+package-lock.json
+jsconfig.json
+rollup.config.js

@@ -1,5 +1,4 @@
 import checkAuth from "./checkAuth";
+import formatDateToInputDate from "./formatDateToInputDate";
 
-export {
-    checkAuth,
-};
+export { checkAuth, formatDateToInputDate };

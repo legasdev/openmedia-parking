@@ -19,13 +19,13 @@
     .input {
         width: 100%;
         padding: 0.75rem;
-        border-radius: 6px;
+        border-radius: 0.375em;
         border: 1px solid transparent;
         background: transparent;
         font-style: normal;
         font-weight: 400;
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
         color: var(--color-dark-10);
     }
 

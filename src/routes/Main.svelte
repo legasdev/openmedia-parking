@@ -1,9 +1,12 @@
 <script>
   import { beforeUpdate } from "svelte";
   import { userIsLoggedIn } from "@stores/auth";
+  import { parkingFilters } from "@stores/app";
   import { checkAuth } from "@utils";
 
+  import { SelectDate } from "@ui/Select";
   import { Card } from "@components/Card";
+  import { CardsList } from "@components/CardsList";
 
   beforeUpdate(() => {
     checkAuth($userIsLoggedIn);
@@ -15,15 +18,6 @@
 </svelte:head>
 
 <Card>
-  Фильтры
+  <SelectDate name="date" bind:value={$parkingFilters.date} />
 </Card>
-<div style="width: 100%; margin-top: 1rem;">
-  <Card>
-    Место №1
-  </Card>
-</div>
-<div style="width: 100%; margin-top: 1rem;">
-  <Card>
-    Место №2
-  </Card>
-</div>
+<CardsList />

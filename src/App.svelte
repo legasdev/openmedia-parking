@@ -19,10 +19,6 @@
       isAuthWasChecked = true;
     });
   });
-
-  $: {
-    console.log('userIsLoggedIn', $userIsLoggedIn);
-  }
 </script>
 
 <Router primary={false} basepath={SETTINGS.baseURL}>

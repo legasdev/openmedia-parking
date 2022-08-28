@@ -1,33 +1,6 @@
 <script>
-  import { onMount } from "svelte";
-
-  import { fbDatabase } from "@stores/firebase";
-  import { parkingPlaces, parkingList } from "@stores/app";
-  import { Card } from "@components/Card";
-
-  onMount(async () => {
-    console.log('fbDatabase', $fbDatabase);
-    // console.log('parkingPlaces', await $parkingPlaces);
-    // const starCountRef = ref($fbDatabase, 'parking/2022/08/28/');
-
-    // set(starCountRef, [
-    //   {
-    //     parkingId: 100,
-    //     firstHalf: '',
-    //     afternoon: '1231231'
-    //   },
-    //   {
-    //     parkingId: 22,
-    //     firstHalf: '1231231',
-    //     afternoon: ''
-    //   },
-    // ]);
-
-    // onValue(starCountRef, (snapshot) => {
-    //   const data = snapshot.val();
-    //   console.log('data', data)
-    // });
-  });
+  import { parkingList } from "@stores/app";
+  import { Card, CardHeader } from "@components/Card";
 </script>
 
 <div class="wrapper">
@@ -36,6 +9,7 @@
   {:then}
     <div>
       <Card>
+        <CardHeader title="Место 1" />
         Место №1
       </Card>
     </div>
@@ -45,7 +19,7 @@
       </Card>
     </div>
   {:catch error}
-    Error
+    Error {error}
   {/await}
 </div>
 

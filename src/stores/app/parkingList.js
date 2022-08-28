@@ -6,8 +6,14 @@ import { fbDatabase } from "@stores/firebase";
 import filters from "./filters";
 import parkingPlaces from "./parkingPlaces";
 
-async function fetchParkingData($fbDatabase) {
-  const parkingRef = ref($fbDatabase, `${FIREBASE_DB.parking}/2022/08/28/`);
+async function fetchParkingData($fbDatabase, searchDate) {
+  const year = searchDate[0];
+  const month = searchDate[1];
+  const day = searchDate[2];
+  const parkingRef = ref(
+    $fbDatabase,
+    `${FIREBASE_DB.parking}/${year}/${month}/${day}/`
+  );
 
   return new Promise((resolve) => {
     onValue(
@@ -23,14 +29,34 @@ async function fetchParkingData($fbDatabase) {
 }
 
 async function createParkingList([$fbDatabase, $filters, $parkingPlaces]) {
-  console.log("$parkingPlaces createParkingList", await $parkingPlaces);
-  console.log("$filters createParkingList", $filters);
+  const searchDate = $filters.date.split("-");
+  const listParkingPlaces = await fetchParkingData($fbDatabase, searchDate);
+  const parkingPlaces = Object.values(await $parkingPlaces).map(
+    ({ level, number }) => {
+      const placeInDatabase = listParkingPlaces?.find(
+        ({ parkingId }) => +parkingId === +number
+      );
 
-  const data = await fetchParkingData($fbDatabase);
+      if (!placeInDatabase) {
+        return {
+          level,
+          firstHalf: "",
+          afternoon: "",
+          parkingId: +number,
+        };
+      }
 
-  console.log("data", data);
+      return {
+        level,
+        ...placeInDatabase,
+      };
+    }
+  );
 
-  return [];
+  console.log("listParkingPlaces", listParkingPlaces);
+  console.log("parkingPlaces", parkingPlaces);
+
+  return parkingPlaces;
 }
 
 const parkingList = derived(

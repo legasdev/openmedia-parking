@@ -1,7 +1,7 @@
 function formatDateToInputDate(date) {
   const dateObject = new Date(date);
   const year = dateObject.getFullYear();
-  const month = dateObject.getMonth();
+  const month = dateObject.getMonth() + 1;
   const day = dateObject.getDate();
 
   const fullMonth = month < 10 ? `0${month}` : month;

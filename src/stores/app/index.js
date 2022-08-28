@@ -1,3 +1,5 @@
 import parkingFilters from "./filters";
+import parkingPlaces from "./parkingPlaces";
+import parkingList from "./parkingList";
 
-export { parkingFilters };
+export { parkingFilters, parkingPlaces, parkingList };

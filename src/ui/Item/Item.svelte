@@ -2,7 +2,12 @@
     export let transparent = false;
 </script>
 
-<div class="item" class:item--only-left={!$$slots.right} class:item--transparent-background={transparent}>
+<div
+  class="item"
+  class:item--only-left={!$$slots.right}
+  class:item--transparent-background={transparent}
+  on:click
+>
     <slot name="left"></slot>
     <slot name="right"></slot>
 </div>

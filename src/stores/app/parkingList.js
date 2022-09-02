@@ -53,9 +53,6 @@ async function createParkingList([$fbDatabase, $filters, $parkingPlaces]) {
     }
   );
 
-  console.log("listParkingPlaces", listParkingPlaces);
-  console.log("parkingPlaces", parkingPlaces);
-
   return parkingPlaces;
 }
 

@@ -44,6 +44,7 @@
         --color-white-20: #E8E8E8;
         --color-white-30: #C6C6C6;
         --color-white-40: #8D8D8D;
+        --color-white-50: #828282;
         --color-dark-10: #000000;
         --color-dark-20: #272727;
         --color-dark-30: #393939;
@@ -55,6 +56,7 @@
         --color-red-60: #EB0000;
         --color-red-50: #FF2E2E;
         --color-green: #37CC71;
+        --color-green-10: #219653;
         --color-yellow: #FFA514;
 
         --outline: 2px solid var(--color-purple-40);

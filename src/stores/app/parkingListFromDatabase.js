@@ -11,9 +11,7 @@ function createParkingListFromDatabase($filters, set) {
     return;
   }
 
-  console.log("$filters.date", $filters.date);
-
-  const searchDate = $filters.date.split("-");
+  const searchDate = formatDateToInputDate($filters.date).split("-");
   const year = searchDate[0];
   const month = searchDate[1];
   const day = searchDate[2];

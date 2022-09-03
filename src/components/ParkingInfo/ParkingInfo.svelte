@@ -12,13 +12,13 @@
   import { Divider } from "@ui/Divider";
   import { Pill } from "@ui/Pill";
 
-  export let firstHalf = "";
-  export let afternoon = "";
+  export let firstHalf = { uid: "", displayName: "" };
+  export let afternoon = { uid: "", displayName: "" };
   export let places = [];
   export let parkingId = "";
 
   function handleClick(period, userId) {
-    const { uid } = $userInformation;
+    const { uid, displayName } = $userInformation;
 
     if (!parkingId || !period || (userId !== uid && userId !== "")) {
       return;
@@ -39,25 +39,42 @@
 
       return {
         ...place,
-        [period]: userId === uid ? "" : uid,
+        [period]: userId === uid ? {
+          uid: "",
+          displayName: ""
+        } : {
+          uid,
+          displayName,
+        },
       }
     });
 
     set(parkingPlaceRef, updatedPlaces);
   }
 
-  $: firstHalfStatus = firstHalf ? PARKING_STATUS.busy : PARKING_STATUS.free;
-  $: firstHalfStatusName = firstHalf ? PARKING_STATUS_NAME.busy : PARKING_STATUS_NAME.free;
-  $: afternoonStatus = afternoon ? PARKING_STATUS.busy : PARKING_STATUS.free;
-  $: afternoonStatusName = afternoon ? PARKING_STATUS_NAME.busy : PARKING_STATUS_NAME.free;
+  let firstHalfStatus;
+  let firstHalfStatusName;
+  let afternoonStatus;
+  let afternoonStatusName;
+
+  $: firstHalfStatus = firstHalf.uid ? PARKING_STATUS.busy : PARKING_STATUS.free;
+  $: firstHalfStatusName = firstHalf.uid ? firstHalf.displayName : PARKING_STATUS_NAME.free;
+  $: afternoonStatus = afternoon.uid ? PARKING_STATUS.busy : PARKING_STATUS.free;
+  $: afternoonStatusName = afternoon.uid ? afternoon.displayName : PARKING_STATUS_NAME.free;
 </script>
 
-<Item onClick={() => handleClick(PARKING_PERIOD.firstHalf, firstHalf)}>
-  <div slot="left">8:00 - 14:00</div>
+<Item onClick={() => handleClick(PARKING_PERIOD.firstHalf, firstHalf.uid)}>
+  <div class="time-text" slot="left">8:00 - 14:00</div>
   <Pill slot="right" value={firstHalfStatusName} status={firstHalfStatus} />
 </Item>
 <Divider/>
-<Item onClick={() => handleClick(PARKING_PERIOD.afternoon, afternoon)}>
-  <div slot="left">14:00 - 20:00</div>
+<Item onClick={() => handleClick(PARKING_PERIOD.afternoon, afternoon.uid)}>
+  <div class="time-text" slot="left">14:00 - 20:00</div>
   <Pill slot="right" value={afternoonStatusName} status={afternoonStatus} />
 </Item>
+
+<style>
+  .time-text {
+      flex: 1 0 auto;
+  }
+</style>

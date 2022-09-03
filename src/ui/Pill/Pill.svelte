@@ -13,9 +13,13 @@
   .wrapper {
       min-height: 1.5rem;
       padding: 2px 8px;
+      margin-left: 1.5rem;
       border-radius: 64px;
       background: var(--color-green-10);
       color: var(--color-white);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
   }
 
   .wrapper--red {

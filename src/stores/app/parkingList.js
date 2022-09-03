@@ -3,6 +3,11 @@ import { derived } from "svelte/store";
 import parkingPlaces from "./parkingPlaces";
 import parkingListFromDatabase from "./parkingListFromDatabase";
 
+const defaultUserInfo = {
+  uid: "",
+  displayName: "",
+};
+
 function createParkingList([$parkingPlaces, $parkingListFromDatabase]) {
   return Object.values($parkingPlaces).map(({ level, number }) => {
     const placeInDatabase = $parkingListFromDatabase?.find(
@@ -12,8 +17,8 @@ function createParkingList([$parkingPlaces, $parkingListFromDatabase]) {
     if (!placeInDatabase) {
       return {
         level,
-        firstHalf: "",
-        afternoon: "",
+        firstHalf: defaultUserInfo,
+        afternoon: defaultUserInfo,
         parkingId: +number,
       };
     }

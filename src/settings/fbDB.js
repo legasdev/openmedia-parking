@@ -1,5 +1,4 @@
 const FIREBASE_DB = {
-  users: "users",
   parking: "parking",
   parkingPlaces: "parkingPlaces",
 };

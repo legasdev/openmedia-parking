@@ -11,7 +11,6 @@ function createParkingPlaces() {
   onValue(
     parkingPlacesRef,
     (snapshot) => {
-      console.log("snapshot.val()", snapshot.val());
       set(snapshot.val());
     },
     () => {

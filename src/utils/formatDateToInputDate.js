@@ -1,4 +1,8 @@
 function formatDateToInputDate(date) {
+  if (typeof date === "string") {
+    return date;
+  }
+
   const dateObject = new Date(date);
   const year = dateObject.getFullYear();
   const month = dateObject.getMonth() + 1;

@@ -5,11 +5,13 @@ import { FIREBASE_DB } from "@settings";
 
 function createParkingPlaces() {
   const { set, update, subscribe } = writable({});
+  const db = getDatabase();
 
-  const parkingPlacesRef = ref(getDatabase(), FIREBASE_DB.parkingPlaces);
+  const parkingPlacesRef = ref(db, FIREBASE_DB.parkingPlaces);
   onValue(
     parkingPlacesRef,
     (snapshot) => {
+      console.log("snapshot.val()", snapshot.val());
       set(snapshot.val());
     },
     () => {
@@ -17,9 +19,25 @@ function createParkingPlaces() {
     }
   );
 
+  function updateData() {
+    onValue(
+      parkingPlacesRef,
+      (snapshot) => {
+        set(snapshot.val());
+      },
+      () => {
+        set({});
+      },
+      {
+        onlyOnce: true,
+      }
+    );
+  }
+
   return {
     set,
     update,
+    updateData,
     subscribe,
   };
 }

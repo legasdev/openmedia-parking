@@ -1,9 +1,9 @@
 <script>
-
+  import { formatDateToInputDate } from "@utils";
   import SelectWrapper from "./Select.Wrapper.svelte";
 
   export let name;
-  export let value = Date.now();
+  export let value = formatDateToInputDate(Date.now());
   export let disabled = false;
 </script>
 

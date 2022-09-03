@@ -7,10 +7,6 @@ import { FIREBASE_DB } from "@settings";
 import filters from "./filters";
 
 function createParkingListFromDatabase($filters, set) {
-  if (!$filters.date) {
-    return;
-  }
-
   const searchDate = formatDateToInputDate($filters.date).split("-");
   const year = searchDate[0];
   const month = searchDate[1];

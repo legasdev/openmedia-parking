@@ -1,7 +1,7 @@
 <script>
-  import { beforeUpdate } from "svelte";
+  import { beforeUpdate, onMount } from "svelte";
   import { userIsLoggedIn } from "@stores/auth";
-  import { parkingFilters } from "@stores/app";
+  import { parkingFilters, parkingPlaces } from "@stores/app";
   import { checkAuth } from "@utils";
 
   import { SelectDate } from "@ui/Select";
@@ -10,6 +10,10 @@
 
   beforeUpdate(() => {
     checkAuth($userIsLoggedIn);
+  });
+
+  onMount(() => {
+    parkingPlaces.updateData();
   });
 </script>
 

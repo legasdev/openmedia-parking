@@ -5,7 +5,6 @@ function createApp() {
   const firebaseConfig = {
     apiKey: "AIzaSyCWz0FIugCN0THXx1FYvhtR0qnLkONKELI",
     authDomain: "openmedia-app.firebaseapp.com",
-    // authDomain: "localhost",
     databaseURL:
       "https://openmedia-parking-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "openmedia-app",

@@ -1,27 +1,21 @@
 <script>
   import { parkingList } from "@stores/app";
   import { Card, CardParkingHeader, CardContent, CardFooter } from "@components/Card";
-  import ParkingInfo from "../ParkingInfo/ParkingInfo.svelte";
+  import { ParkingInfo } from "@components/ParkingInfo";
 </script>
 
 <div class="wrapper">
-  {#await $parkingList}
-    Loading...
-  {:then places}
-    {#each places as { level, firstHalf, afternoon, parkingId } (parkingId)}
-      <div style="width: 100%; margin-top: 1rem;">
-        <Card>
-          <CardParkingHeader number={parkingId} />
-          <CardContent>
-            <ParkingInfo {firstHalf} {afternoon} />
-          </CardContent>
-          <CardFooter {level} />
-        </Card>
-      </div>
-    {/each}
-  {:catch error}
-    Error {error}
-  {/await}
+  {#each $parkingList as { level, firstHalf, afternoon, parkingId } (parkingId)}
+    <div style="width: 100%; margin-top: 1rem;">
+      <Card>
+        <CardParkingHeader number={parkingId} />
+        <CardContent>
+          <ParkingInfo {firstHalf} {afternoon} {parkingId} places={$parkingList} />
+        </CardContent>
+        <CardFooter {level} />
+      </Card>
+    </div>
+  {/each}
 </div>
 
 <style>

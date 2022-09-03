@@ -1,9 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { Router, Route } from "svelte-navigator";
-  import { onAuthStateChanged, updateProfile } from "firebase/auth";
+  import { onAuthStateChanged } from "firebase/auth";
   import { SETTINGS, ROUTES } from "@settings";
-  import { userIsLoggedIn, userInformation } from "@stores/auth";
+  import { userInformation } from "@stores/auth";
   import { fbAuth } from "@stores/firebase";
 
   import SignIn from "@routes/SignIn.svelte";

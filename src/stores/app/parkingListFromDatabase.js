@@ -6,7 +6,9 @@ import { FIREBASE_DB } from "@settings";
 
 import filters from "./filters";
 
-function createParkingListFromDatabase($filters, set) {
+let removeRefListener = () => {};
+
+function updateParkingListFromDatabase($filters, set) {
   const searchDate = formatDateToInputDate($filters.date).split("-");
   const year = searchDate[0];
   const month = searchDate[1];
@@ -16,9 +18,22 @@ function createParkingListFromDatabase($filters, set) {
     `${FIREBASE_DB.parking}/${year}/${month}/${day}/`
   );
 
-  onValue(
+  removeRefListener();
+
+  removeRefListener = onValue(
     parkingRef,
     (snapshot) => {
+      const pieces = snapshot.ref._path.pieces_;
+      const [, snapshotYear, snapshotMonth, snapshotDay] = pieces;
+
+      if (
+        +snapshotYear !== +year ||
+        +snapshotMonth !== +month ||
+        +snapshotDay !== +day
+      ) {
+        return;
+      }
+
       set(snapshot.val());
     },
     () => {
@@ -29,7 +44,7 @@ function createParkingListFromDatabase($filters, set) {
 
 const parkingListFromDatabase = derived(
   filters,
-  createParkingListFromDatabase,
+  updateParkingListFromDatabase,
   []
 );
 

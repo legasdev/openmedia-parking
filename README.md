@@ -10,7 +10,7 @@ Copy and launch the following bash script to configure development environment (
 
 ```bash
 # clone the repo
-$ git clone git@github.com:legasdev/openmedia-parking.git && cd openmedia.podcasts
+$ git clone git@github.com:legasdev/openmedia-parking.git && cd openmedia-parking
 
 # install dependencies
 $ npm install

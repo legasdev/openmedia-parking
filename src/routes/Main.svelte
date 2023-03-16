@@ -2,6 +2,7 @@
   import { beforeUpdate, onMount } from "svelte";
   import { userIsLoggedIn } from "@stores/auth";
   import { parkingFilters, parkingPlaces } from "@stores/app";
+
   import { checkAuth } from "@utils";
 
   import { SelectDate } from "@ui/Select";

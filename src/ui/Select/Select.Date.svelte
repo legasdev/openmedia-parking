@@ -1,4 +1,6 @@
 <script>
+  import { DateInput } from "./../date";
+
   import { formatDateToInputDate } from "@utils";
   import SelectWrapper from "./Select.Wrapper.svelte";
 
@@ -8,6 +10,7 @@
 </script>
 
 <SelectWrapper>
+<!--  <DateInput class="input" {name} bind:value format="yyyy-MM-dd" {disabled} />-->
   <input
     class="input"
     type="date"

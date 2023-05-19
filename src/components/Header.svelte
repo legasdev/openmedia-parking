@@ -48,5 +48,7 @@
 
     .logo {
         width: 100%;
+        max-width: 23rem;
+        padding: 0 1rem;
     }
 </style>

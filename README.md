@@ -25,3 +25,19 @@ Then launch the webpack by production mode:
 ```bash
 $ npm run build
 ```
+
+Чтобы добавить пользователя нужно в App.svelte написать код
+```js
+onMount(() => {
+  onAuthStateChanged($fbAuth, (user) => {
+    $userInformation = user;
+    isAuthWasChecked = true;
+
+    updateProfile(user, {
+      displayName: "Имя Пользователя"
+    }).catch((error) => {
+      console.error(error);
+    });
+  });
+});
+```

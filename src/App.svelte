@@ -13,17 +13,19 @@
 
   let isAuthWasChecked = false;
 
+  const auth = getAuth();
+
   onMount(() => {
     onAuthStateChanged($fbAuth, (user) => {
       $userInformation = user;
       isAuthWasChecked = true;
     });
 
-    updateProfile(user, {
-          displayName: "Антон Саманов"
-        }).catch((error) => {
-          console.error(error);
-        });
+    updateProfile(auth.currentUser, {
+      displayName: "Антон Саманов"
+    }).catch((error) => {
+      console.error(error);
+    });
   });
 </script>
 

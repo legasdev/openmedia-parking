@@ -18,7 +18,8 @@
     onAuthStateChanged($fbAuth, (user) => {
       $userInformation = user;
       isAuthWasChecked = true;
-  });
+    });
+  })
 </script>
 
 <Router primary={false} basepath={SETTINGS.baseURL}>

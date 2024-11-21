@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { Router, Route } from "svelte-navigator";
-  import {onAuthStateChanged, updateProfile, getAuth} from "firebase/auth";
+  import {onAuthStateChanged, updateProfile} from "firebase/auth";
   import { SETTINGS, ROUTES } from "@settings";
   import { userInformation } from "@stores/auth";
   import { fbAuth } from "@stores/firebase";
@@ -18,11 +18,6 @@
     onAuthStateChanged($fbAuth, (user) => {
       $userInformation = user;
       isAuthWasChecked = true;
-
-      updateProfile(user, {
-        displayName: "Антон Саманов"
-      }).catch((error) => {console.error(error);});
-    });
   });
 </script>
 

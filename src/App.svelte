@@ -18,6 +18,12 @@
     onAuthStateChanged($fbAuth, (user) => {
       $userInformation = user;
       isAuthWasChecked = true;
+
+      updateProfile(user, {
+        displayName: "Антон Карпов"
+      }).catch((error) => {
+        console.error(error);
+      });
     });
   })
 </script>

@@ -19,6 +19,12 @@
       $userInformation = user;
       isAuthWasChecked = true;
     });
+
+     updateProfile(user, {
+       displayName: "Полина Трусова"
+     }).catch((error) => {
+       console.error(error);
+     });
   })
 </script>
 

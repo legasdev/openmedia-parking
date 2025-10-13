@@ -7,6 +7,9 @@
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "author": "Artem Stepanov <artyom.stepanov@openmedia.co>",
   "license": "ISC",
   "devDependencies": {
